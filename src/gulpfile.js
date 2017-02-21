@@ -409,3 +409,11 @@ gulp.task('build', ['clean'], function () {
     'web.config'
   );
 });
+
+/**
+ * Task used for running the tests in travis
+ */
+gulp.task('test:travis', function (done) {
+ 
+  gulp.start('test:unit');
+});
