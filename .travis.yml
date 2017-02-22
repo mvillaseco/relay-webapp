@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - "6"
+sudo: required
+dist: trusty
 # Cache yarn dependencies / Enable cache back when everything is working smoothly
 #cache:
   #yarn: true
@@ -10,12 +12,13 @@ node_js:
 before_install:
   # Before starting the build go to the subfolder where code was placed
   - cd src
-  # Setup browsers
-  - export CHROME_BIN=chromium-browser
-  # Setup a fake display for the browser
+  - export CHROME_BIN=/usr/bin/google-chrome
   - export DISPLAY=:99.0
-  # Run a GUI environment faker thingy
   - sh -e /etc/init.d/xvfb start
+  - sudo apt-get update
+  - sudo apt-get install -y libappindicator1 fonts-liberation
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - sudo dpkg -i google-chrome*.deb
 before_script:
   # Install global dependencies
   - npm list -g gulp --depth=0 || npm install -g gulp
