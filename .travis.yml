@@ -1,31 +1,35 @@
 language: node_js
 node_js:
   - "6"
-# Cache yarn dependencies  
-cache:
-  yarn: true
-  directories:
-    - node_modules
-    - bower_components
+# Cache yarn dependencies / Enable cache back when everything is working smoothly
+#cache:
+  #yarn: true
+  #directories:
+    #- node_modules
+    #- bower_components
 before_install:
   # Before starting the build go to the subfolder where code was placed
   - cd src
+  # Setup browsers
+  - export CHROME_BIN=chromium-browser
+  # Setup a fake display for the browser
+  - export DISPLAY=:99.0
+  # Run a GUI environment faker thingy
+  - sh -e /etc/init.d/xvfb start
 before_script:
   # Install global dependencies
   - npm list -g gulp --depth=0 || npm install -g gulp
   - npm list -g bower --depth=0 || npm install -g bower
   # Install dependencies
   - yarn
-  # Setup browsers
-  - export CHROME_BIN=chromium-browser
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+  # Update the browser webdrivers
   - node ./node_modules/protractor/bin/webdriver-manager update
 script:
-  # Exec tests
-  - gulp test:travis
+  # Execute tests
+  - gulp test:unit
 env:
   global:
+    # Saucelabs credentials
     - secure: "eXuJE2TEdLqZJLLdmGAy1u1CZI+n4Ig1M1ExU4zZDjqn7j/a1mU2FunVBEByE5/WaFc16lQPOz9lOuYngAsTildzqSw9jIdJhSIuOHEas5i1JViNnN6UeAoB8VhRVOZbkP5QpsT2mx2dusNVxXUw+g8Yofy/TGyZOcx//nW5ufqoVnkX1CFM9i0+3gMfVVxsl9nlpj16zejtXygNKkGU+Q8dL4FZRg0m7cQrjTWygILr+8cE3u9F825l18j9zU+RzrmxlOQ6gblDUBcVoPb/DYLNXvuMR+hV/pq35vXkvwy4sUE2xRj/t5C/X6kL8gpIGKfJiaBxm6WDNmavUzICzFmUpU7h8/01GSMaHE2SKX9VTO218aKwm5DGYSp0/uxRQad+u3v7wicqmlPVRZQpsaohoGj3/gGsw5OO9NUBS3g9VrW7sBmHPSHGdHr11+4Grc/rL55QnELgENo9sKTClmbuIdUzAMmQE1w3iPI6ZFYlw8ecamAH/NJtn4UAKBkzh6XAseGatghZXLDVoxezeFIGEhoNDKwRiXiC40JFwC/ZUY+WuO5a3eMpIaEGySPnNWah6LdZqUbh4NnB9xAhmmNr5IxD79HCSL3PQkla0u8HbOuuYYWG+dC4oqucHD4VRyVHY60v/emJ19Xs6ejTwor4MBhF8YQpU3L1snaS7YY="
     - secure: "SavjzrSlPLCQE4wMQ0hjdOCNW9tCeBPc7cxkSryzMZqe5/zZ/ZfXbrLo2Rr8tloivnZ1HVTGylUxKKoAUxccOaezJp9DWwT5VxwHrKQMlTplxXDWkGBmMBVTbyBL9fhEsQTlEpl4nKRbY35n+8HjMozkdgxDYdwqy+C8AfrOpuFbXLgIFGUGOMJFyZ9TdYYTbG76JXgQ1FWWzZXCOundlgCAqekK0mWZafEjwL6NYkkxzLbA4BcpSwONxwIr2q3qcaupeQhyvZ6KMYionKUpzrawT2IV6iqVjfc06bHEXWTLZdSpuMFxwEzLXGR/wpIhznkWKl4/UxPlHgb1lgDi6g9R1IaSSNvOzAolJETg7TKGrEzciYsFyrQiRuibKaHc08gShVSpGnrop42bb9vJb9o2b8qI6b5YwfJiZpnimdzdFX6ZISSlLignBrU2htMauTLRp4NpwhbYS7zDjjrWhfX/d1vqGrHX9HAfWbaxTrSiUtp0iu7A12IWgeDjLicPV0nj7Jw4TPihBL1kOokSRwhkteeyupdH9vAI5C6nIkDwXBRLbswNNqeG0KeEHdmxtyQ77OconbnIT/lZCWlBt2p0CEGYMnCRtbK8zuv0eJyjQd9WfCXsNoE+jn1n2ocUV9nKLIvSA2N7ig/WQztRCPCCd0W/gg4/dAWRJxp+6KY="
 addons:
