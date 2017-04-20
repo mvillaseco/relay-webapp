@@ -1,0 +1,7 @@
+<div ng-click="toggleVisibility()" class="animate-show" ng-class="{true:'expanded'}[expanded]">
+  <p>{{selectedOption.key | translate}}</p>
+  <svg class="icon arrow-grey"><use xlink:href="images/sprite.svg#doppler-icon-arrowgray"></use></svg>
+  <ul ng-show="expanded">
+    <li ng-repeat="option in options" ng-click="selected(option)">{{option.key | translate}}</li>
+  </ul>
+</div>

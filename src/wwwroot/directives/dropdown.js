@@ -6,7 +6,7 @@
       .directive('dropdown', dropdown);
 
     dropdown.$inject = [
-      
+
     ];
 
     function dropdown() {
@@ -32,7 +32,7 @@
 
             scope.selected = function (opt) {
                 scope.selectedOption = opt;
-                scope.change(opt);
+                //scope.change(opt);
             };
         }
     }
