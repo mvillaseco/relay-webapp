@@ -26,7 +26,6 @@
     vm.submitted = false;
     vm.name = $translate.instant('name_placeholder_confirmation');
     vm.updateValidation = updateValidation;
-    vm.submitActivation = submitActivation;
     vm.activationPromise = activate();
     vm.passwordEmpty = false;
     vm.termsAccepted = false;
@@ -102,6 +101,21 @@
       }
     }
 
+    vm.submitActivation = NonConcurrentAsyncAction(submitActivation);
+
+    function NonConcurrentAsyncAction(f)
+    {
+      var promise = null;
+      var wrapped = function()
+      {
+        if (!promise || !promise.$$state || promise.$$state.status)
+        {
+          promise = f.apply(vm, arguments);
+        }
+      };
+      return wrapped;
+    }
+
     function submitActivation(form, userName, apiKey) {
       vm.submitted = true;
       if (!form.$valid) {
@@ -109,7 +123,7 @@
       }
       var pass = form.pass.$modelValue || null;
       var checkTerms = form.checkTerms ? $rootScope.getTermsAndConditionsVersion() : null;
-      signup.activateUser(apiKey, form.domain.$modelValue, userName, pass, $translate.use(), form.industry.$modelValue.code, form.phoneNumber.$modelValue, form.country.$modelValue.code, checkTerms)
+      return signup.activateUser(apiKey, form.domain.$modelValue, userName, pass, $translate.use(), form.industry.$modelValue.code, form.phoneNumber.$modelValue, form.country.$modelValue.code, checkTerms)
         .then(function (result) {
           $rootScope.isNewUser = true;
           var credentials = {
@@ -117,11 +131,12 @@
             password: form.pass.$modelValue
           };
 
-          auth.login(credentials).then(function (result) {
-            if (result.authenticated) {
-              $location.path('/');
-            }
-          });
+            return auth.login(credentials)
+              .then(function (result) {
+                if (result.authenticated) {
+                  $location.path('/');
+                }
+            });
         });
     }
   }
