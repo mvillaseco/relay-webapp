@@ -178,6 +178,9 @@ section {
   &.visible{opacity: 1;pointer-events: all;}
 }
 
+.no-transitions{
+  transition: none !important;
+}
 
 fieldset {
   border: none;
