@@ -390,5 +390,10 @@
   "vip_support_text": "VIP Support",
   "account_manager_text": "Account manager",
   "contact_us_text": "Contact Us",
-  "contact_premium_plan_subject": "Doppler Relay Premium Quote"
+  "contact_premium_plan_subject": "Doppler Relay Premium Quote",
+  "downgrade_popup_title": "Are you sure you want to change your plan?",
+  "downgrade_popup_main_text": "Clicking on 'confirm' you will change the amount of Emails you can send from the first day of next month.",
+  "downgrade_popup_confirm_text": "Write 'CHANGE' to confirm.",
+  "downgrade_popup_cancel_button": "Cancel this action",
+  "confirm_text": "Confirm"
 };

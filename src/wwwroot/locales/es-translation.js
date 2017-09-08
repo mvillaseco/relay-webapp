@@ -404,5 +404,10 @@
   "vip_support_text": "Soporte VIP",
   "account_manager_text": "Ejecutivo de cuenta exclusivo",
   "contact_us_text": "Contáctanos",
-  "contact_premium_plan_subject": "Consulta Doppler Relay Premium"
+  "contact_premium_plan_subject": "Consulta Doppler Relay Premium",
+  "downgrade_popup_title": "¿Seguro que quieres cambiar de plan?",
+  "downgrade_popup_main_text": "Haciendo click en ¨confirmar¨ se modificará la cantidad de Emails que puedes enviar a partir del primer día del mes siguiente.",
+  "downgrade_popup_confirm_text": "Escribe ¨CAMBIAR¨ para confirmar.",
+  "downgrade_popup_cancel_button": "Cancelar esta acción",
+  "confirm_text": "Confirmar"
 };
