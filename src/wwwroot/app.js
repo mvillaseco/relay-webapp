@@ -236,11 +236,8 @@
     });
 
     if ($window.ga) {
-      $rootScope.$on('$locationChangeSuccess', function () {
-        $window.ga('send', {
-          'hitType': 'pageview',
-          'screenName' : $location.url()
-        }); 
+      $rootScope.$on('$routeChangeSuccess', function () {
+        $window.ga('send', 'pageview', { 'page': $location.url()}); 
       });
     }
   }]);
