@@ -56,8 +56,7 @@
       $provide.decorator('numberFilter', ['$delegate', makeStateful]);
       $provide.decorator('currencyFilter', ['$delegate', makeStateful]);
 
-
-      //  $locationProvider.html5Mode(true); //this apply HTML5MODE
+      
       uiSelectConfig.theme = 'selectize';
       tooltipsConfProvider.configure({
         'smart':true,
@@ -165,6 +164,7 @@
         .otherwise({
           redirectTo: '/reports'
         });
+        $locationProvider.html5Mode(true);
 
       $translateProvider
         .translations('en', getLocale('en'))

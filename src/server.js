@@ -31,6 +31,13 @@ var dopplerRelay = setting(app, path.resolve(__dirname));
 // Serve static content
 app.use(express.static(__dirname + '/' + dopplerRelay.config.dist + '/'));
 
+app.all('*', function (req, res, next) {
+
+  // Just send the index.html for other files to support HTML5Mode
+	res.sendFile(dopplerRelay.config.dist + '/index.html', { root: __dirname });
+
+});
+
 // Serve root
 app.get('/', function(req, res) {
   res.status(200).sendfile(__dirname + '/' + dopplerRelay.config.dist + '/index.html');
