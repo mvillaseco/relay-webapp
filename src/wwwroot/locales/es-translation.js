@@ -202,6 +202,7 @@
   "action_templates_gathering": "Obteniendo plantillas",
   "action_templates_deleting": "Borrando plantilla",
   "action_templates_getting": "Obteniendo una plantilla",
+  "action_templates_getting_body": "Obteniendo el contenido de una plantilla",
   "action_templates_creating": "Creando una plantilla",
   "action_login": "Ingresando",
   "action_get_user": "Obteniendo datos del usuario",

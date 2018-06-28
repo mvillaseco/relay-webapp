@@ -190,6 +190,7 @@
   "action_templates_gathering": "Gathering templates",
   "action_templates_deleting": "Deleting template",
   "action_templates_getting": "Getting a template",
+  "action_templates_getting_body": "Getting a template body",
   "action_templates_creating": "Creating a template",
   "action_login": "Logging in",
   "action_get_user": "Getting user",

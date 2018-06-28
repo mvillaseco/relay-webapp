@@ -57,7 +57,7 @@
 
     function getTemplateBody(id) {
       return $http({
-        actionDescription: 'action_templates_getting',
+        actionDescription: 'action_templates_getting_body',
         method: 'GET',
         url: RELAY_CONFIG.baseUrl + '/accounts/' + accountId + '/templates/' + id + '/body'
       })
