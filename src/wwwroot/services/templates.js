@@ -15,6 +15,7 @@
 
   function Templates($http, $window, $q, auth, RELAY_CONFIG) {
 
+    var accountId = auth.getAccountId();
     var templatesService = {
       getAllData: getAllData,
       getTemplate: getTemplate,
@@ -26,8 +27,6 @@
     return templatesService;
 
     function getAllData() {
-      var accountId = auth.getAccountId();
-
       return $http({
         actionDescription: 'action_templates_gathering',
         method: 'GET',
@@ -36,8 +35,6 @@
     }
 
     function deleteTemplate(id) {
-      var accountId = auth.getAccountId();
-
       return $http({
         actionDescription: 'action_templates_deleting',
         method: 'DELETE',
@@ -47,7 +44,6 @@
 
     function getTemplate(id) {
       // TODO: It is a dummy implementation
-      var accountId = auth.getAccountId();
 
       return $http({
         actionDescription: 'action_templates_getting',
@@ -59,8 +55,6 @@
           });
     };
 
-    function save(model) {
-      var accountId = auth.getAccountId();
     function getTemplateBody(id) {
       return $http({
         actionDescription: 'action_templates_getting',
@@ -72,6 +66,7 @@
       });
     }
 
+    function save(model) {
       var isCreating = !model.id;
 
       var request = { data: model };
