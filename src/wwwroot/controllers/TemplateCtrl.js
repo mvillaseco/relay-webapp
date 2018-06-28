@@ -44,14 +44,25 @@
           $scope.template.fromName = result.from_name;
           $scope.template.fromEmail = result.from_email;
           $scope.template.subject = result.subject;
-          $scope.template.content = result.body;
           $scope.template.name = result.name;
           $scope.template.id = result.id;
         }).catch(function (error) {
           // TODO: do something with the error
         }).finally(function () {
-          $scope.loadInProgress = false;
+          if ($scope.loadInProgress) {
+            $scope.loadInProgress = false;
+          }
         });
+      
+      templates.getTemplateBody(templateId)
+        .then(function(result) {
+          $scope.template.content = result.body;
+        }).finally(function () {
+          if ($scope.loadInProgress) {
+            $scope.loadInProgress = false;
+          }
+        });
+      
     }
 
     function save() {

@@ -19,7 +19,8 @@
       getAllData: getAllData,
       getTemplate: getTemplate,
       save: save,
-      deleteTemplate: deleteTemplate
+      deleteTemplate: deleteTemplate,
+      getTemplateBody: getTemplateBody
     };
 
     return templatesService;
@@ -60,6 +61,16 @@
 
     function save(model) {
       var accountId = auth.getAccountId();
+    function getTemplateBody(id) {
+      return $http({
+        actionDescription: 'action_templates_getting',
+        method: 'GET',
+        url: RELAY_CONFIG.baseUrl + '/accounts/' + accountId + '/templates/' + id + '/body'
+      })
+      .then(function (result) {
+        return result.data;
+      });
+    }
 
       var isCreating = !model.id;
 
